@@ -27,14 +27,14 @@
 
 - name: run dhcpd server
   docker_container:
-    name: "{{dhcpd_container_name}}"
-    image: "{{dhcpd_container_image}}"
+    name: "{{ dhcpd_container_name }}"
+    image: "{{ dhcpd_container_image }}"
     restart_policy: always
     network_mode: host
     init: yes
     command: >
-      {{dhcpd_bind_interface}}
+      {{ dhcpd_bind_interface }}
     volumes:
-      - "{{dhcpd_config_dir}}:/data"
+      - "{{ dhcpd_config_dir }}:/data"
     pull: yes
-    recreate: "{{dhcpd_container_recreate or result_config_file.changed}}"
+    recreate: "{{ dhcpd_container_recreate or result_config_file.changed }}"
