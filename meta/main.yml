@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Francisco Castello
+  role_name: dhcpd_docker
+  description: Role to start docker container running dhcpd
+  company: pancho.dev
+  license: "license (MIT)"
+  min_ansible_version: 2.7
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - networking
+    - router
+    - dhcp
+    
