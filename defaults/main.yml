@@ -17,7 +17,7 @@ dhcpd_global_authoritative: yes
 networks:
   - net_address: 192.168.2.0 # Mandatory
     netmask: 255.255.255.0 # Mandatory
-    range: "192.168.2.21 192.168.2.250" #Mandaroty, range whher dhcp will assing ip addresses
+    range: "192.168.2.21 192.168.2.250" #Mandatory, range where dhcp will assing ip addresses
     gateway: 192.168.2.1 # Mandatory
     dns_servers: "192.168.2.1"
     domain_name: home.local
@@ -26,4 +26,4 @@ networks:
 static_hosts:
   - name: myhost # Mandatory, Hostname (must be unique)
     ip: 192.168.2.3 # Mandatory, Fixed IP address
-    mac: ab:cd:ef:01:02:03 # Mandatory, Mac Address of de device
+    mac: ab:cd:ef:01:02:03 # Mandatory, Mac Address of the device
