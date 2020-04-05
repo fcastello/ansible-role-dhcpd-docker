@@ -1,2 +1,40 @@
 ---
-# tasks file for ansible-role-dhcpd-docker
+- name: install python3-pip
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+
+- name: install docker pip package
+  pip:
+    name: docker
+
+
+- name: create folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  with_items:
+    - "{{ dhcpd_config_dir }}"
+
+- name: copy config file
+  template:
+    src: dhcpd.conf.j2
+    dest: "{{ dhcpd_config_dir }}/dhcpd.conf"
+  register: result_config_file
+
+
+- name: run dhcpd server
+  docker_container:
+    name: "{{dhcpd_container_name}}"
+    image: "{{dhcpd_container_image}}"
+    restart_policy: always
+    network_mode: host
+    init: yes
+    command: >
+      {{dhcpd_bind_interface}}
+    volumes:
+      - "{{dhcpd_config_dir}}:/data"
+    pull: yes
+    recreate: "{{dhcpd_container_recreate or result_config_file.changed}}"
