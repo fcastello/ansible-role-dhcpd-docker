@@ -47,10 +47,12 @@ static_hosts:
 # Limitations
 - Only supports on IPv4
 - Runs as network mode host so network isolaiton is not possible
+- At the moment the servers runs based on networkboot/dhcpd:latest, however is an old build so it might be running vulnerable or outdated packages
 
 # To Do
 - Make it work not only in network mode host
-- add confoguration for lease times to a network
+- add configuration for lease times to a network
+- Use a newer version of the docker image or build one with updated packages
 
 
 # Disclaimer
