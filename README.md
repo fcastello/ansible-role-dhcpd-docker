@@ -1,9 +1,13 @@
+# DEPRECATION NOTICE!!!!
+
+This repository is using a deprecated DHCP server from isc DHCP. It was updated to maintain some internal DHCP but soon to be migrated to ISC Kea DHCP server. Use at your own risk as it might have security vulnerabilities.
+
 # ansible-role-dhcpd-docker
 
 Ansible role to configure and deploy a docker container for running isc dhcpd server.
 
 # requirements
-- ubuntu 18.04. It might work in other ubuntu versions but has been tested with ubuntu 18.04
+- ubuntu 24.04. It might work in other ubuntu versions but has been tested with ubuntu 24.04. Other versions like 18.04 and 20.04 have been reported to work
 - docker: Needs docker installed in the server
 
 

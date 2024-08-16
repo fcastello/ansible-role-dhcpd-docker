@@ -4,7 +4,7 @@ galaxy_info:
   description: Role to start docker container running dhcpd
   company: pancho.dev
   license: "license (MIT)"
-  min_ansible_version: 2.7
+  min_ansible_version: 2.17
   platforms:
     - name: Debian
       versions:
