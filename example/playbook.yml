@@ -2,8 +2,8 @@
 
 - name: Run DHCP server
   hosts: all
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
 
   tasks:
     - name: deploy dhcpd

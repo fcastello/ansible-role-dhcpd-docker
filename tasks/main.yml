@@ -1,9 +1,9 @@
 ---
-- name: install needed packages
+- name: Install needed packages
   ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
-    update_cache: yes
+    update_cache: true
   vars:
     packages:
       - apt-transport-https
@@ -12,31 +12,32 @@
       - python3-pip
       - python3-docker
 
-- name: create folders
+- name: Create folders
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    recurse: yes
+    recurse: true
   with_items:
     - "{{ dhcpd_config_dir }}"
 
-- name: copy config file
+- name: Copy config file
   ansible.builtin.template:
     src: dhcpd.conf.j2
     dest: "{{ dhcpd_config_dir }}/dhcpd.conf"
+    mode: '0644'
   register: result_config_file
 
 
-- name: run dhcpd server
-  docker_container:
+- name: Run dhcpd server
+  community.docker.docker_container:
     name: "{{ dhcpd_container_name }}"
     image: "{{ dhcpd_container_image }}"
     restart_policy: always
     network_mode: host
-    init: yes
+    init: true
     command: >
       {{ dhcpd_bind_interface }}
     volumes:
       - "{{ dhcpd_config_dir }}:/data"
-    pull: yes
+    pull: true
     recreate: "{{ dhcpd_container_recreate or result_config_file.changed }}"
